@@ -1,0 +1,50 @@
+# Exercise 09
+# 2023/11/10
+
+# install required packages for this Exercise09
+install.packages("ggplot2")
+library(ggplot2)
+
+# Question 01
+
+# set work directory and read data file 
+setwd("C:\\Users\\debit\\Downloads\\Stem decay project")
+decay <- read.delim("Avg_decay.txt", header = TRUE, sep = "\t")
+
+# create a scatter plot of those two variables and includes a trend line using base R
+scatterplot1 <- plot(decay$Wood_density, decay$Decay)
+linregression <- lm(Decay ~ Wood_density, data = decay)
+trend <- abline(lm(Decay ~ Wood_density, data = decay))
+
+# create a scatter plot of those two variables and includes a trend line using ggplot2 package
+scatterplot2 <- ggplot(decay, aes(x = Wood_density, y = Decay))+
+  geom_point()+
+  geom_smooth(method = "lm", se = TRUE) +
+  labs (x = "Wood Density (g/cm^3)", y = "Stem Decay (%)") +
+  theme_classic()
+scatterplot2
+
+# Question 02
+
+# read data.txt file 
+df <- read.delim("data.txt", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+
+# create a barplot of the mans of the four populations using ggplot2 package
+descriptive_statistics <- df %>% group_by(region) %>% summarize(mean=mean(observations))
+barplot <- ggplot(descriptive_statistics, aes(x = factor(region), y = ,"observations", color = 
+factor(region))) +
+  geom_bar(stat = "Identity") +
+  labs( x = "Region", y = "Observations") +
+  theme_classic()
+barplot 
+
+# create a scatter plot of all of the observations using ggplot2 package
+scatterplot3 <- ggplot(df, aes(x=factor(region), y=observations, color = factor (region))) +
+  geom_point(alpha = 0.2) +
+  theme_classic() +
+  stat_summary(aes(x= factor(region), y = observations), fun = mean) +  #mean to see difference 
+  labs(x="Region", y="Observations")
+scatterplot3 
+
+# Barplot represents mean value and scatterplot represents all observed points in the data. 
+
