@@ -1,5 +1,19 @@
 # Biergans Exercise 9
 
+# Part 1
+
+# Read the data
+data <- read.csv("ex9data.csv", header = TRUE)
+
+# Scatter plot
+plot(data$Times_Working_Out, data$Loads_of_Laundry, main = "Loads of Laundry (per week) VS Times Working Out (per week)",
+     xlab = "Times Working Out", ylab = "Loads of Laundry", pch = 19)
+
+# Add a trend line
+model <- lm(data$Loads_of_Laundry ~ data$Times_Working_Out)
+abline(model, col = "blue")
+
+
 # Part 2
 
 # Read the data from the file
@@ -10,7 +24,7 @@ means <- aggregate(observations ~ region, data, mean)
 barplot(means$observations, 
         names.arg = means$region, 
         main = "Mean Observations of Each Region",
-        xlab = "Region", ylab = "Mean Observations", col = "blue")
+        xlab = "Region", ylab = "Mean Observations", col = "green")
 
 # Scatter plot of all observations
 plot(jitter(as.numeric(factor(data$region))), data$observations, 
