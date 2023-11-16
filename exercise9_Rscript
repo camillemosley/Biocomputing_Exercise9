@@ -1,0 +1,52 @@
+##Exercise 9 Script: Plotting
+#1 Create your own linear plot with data
+getwd()
+setwd("C:/Users/ricar/OneDrive/Desktop/Biocomputing_Exercise9")
+# load a package every time you wish to use it
+library(ggplot2)
+##Read for the file
+local_data <- read.csv("Exercise 9 Data - Sheet1.csv", header = TRUE, stringsAsFactors = FALSE)
+ggplot(data = local_data,
+       aes(x = Hours.spent.on.Homework, y = Hours.spent.Sleeping)) +
+  geom_point() +
+  theme_classic() +
+  xlab("Time spent on Homework (hr)") +
+  ylab("Time spent sleeping (hr)") +
+  stat_smooth(method="lm") 
+
+#2 
+#read in data.txt
+data.txt <- read.table("data.txt", sep = ",", header = TRUE)
+#create bar plot
+#calculate the means
+#subseat the data and calculate the mean 
+data_north <- data.txt[data.txt$region == "north", ]
+north_mean <- mean(data_north$observations)
+
+data_south <- data.txt[data.txt$region == "south", ]
+south_mean <- mean(data_south$observations)
+
+data_west <- data.txt[data.txt$region == "west", ]
+west_mean <- mean(data_west$observations)
+
+data_east <- data.txt[data.txt$region == "east", ]
+east_mean <- mean(data_east$observations)
+
+#data set with regions and means
+data_means <- data.frame(x = c("north", "south", "east", "west"),
+                         y = c(north_mean, south_mean, east_mean, west_mean))
+#plot data
+ggplot(data= data_means, aes(x=x, y=y, color = x, fill = x)) +
+  geom_bar(stat= "identity")
+
+#scatter plot
+ggplot(data = data.txt, aes(x = region, y = observations, color= region, alpha=0.1)) +
+  geom_jitter(height=0) +
+  theme_classic() +
+  theme(legend.position = "none")
+
+#comments for question: do the bar plot and scatter plot tell different stories:
+##Yes! The scatter plot is able to illustrate the variability of the data for a given 
+##region. For example, in the bar plot, it could be easy to interpret that all regions 
+##have uniform (or alike) data points. However, the scatter plot reveals that that is not 
+##the case and although they may have similar means, the distribution of this data is very spread
