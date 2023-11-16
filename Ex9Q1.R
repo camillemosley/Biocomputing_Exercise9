@@ -1,0 +1,5 @@
+setwd("/Users/vivianyang/Desktop/Biocomputing")
+library(ggplot2)
+library(cowplot)
+rando <- read.table("Ex9.txt", header=TRUE, sep="\t",stringsAsFactors = FALSE)
+ggplot(data = rando, aes(x = Time, y = Distance))+geom_point()+xlab("time(s)")+ylab("distance(m)")+stat_smooth(method="lm")+theme_classic()
