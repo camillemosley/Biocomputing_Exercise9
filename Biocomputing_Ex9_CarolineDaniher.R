@@ -12,8 +12,8 @@ library(cowplot)
 #1 Upload data and create a scatter plot with it 
 # I chose to take data showing the number of steps I have and the hours of sleep I get. 
 # The data is from my smart watch 
-data<-read_excel("~/Desktop/R Biocomputing/Biocomputing_CarolineDaniher.xlsx")
-ggplot(data, aes(x = data$`Hours of Sleep`, y = data$`Daily Steps`)) + 
+data <- read.csv("~/Desktop/R Biocomputing/Biocomputing_Exercise9/Biocomputing_CarolineDaniher.csv", header = TRUE, stringsAsFactors = FALSE)
+ggplot(data, aes(x = data$Hours.of.Sleep, y = data$Daily.Steps)) + 
   geom_point() +
   xlab("Hours of Sleep") + 
   ylab("Daily Steps") +
