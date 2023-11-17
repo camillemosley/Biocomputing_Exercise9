@@ -3,6 +3,8 @@
 getwd()
 getwd()
 setwd("/Users/faithschafer/Downloads/Biocomputing_Exercise9")
+install.packages("readxl")
+library("readxl")
 
 food <- read_excel("fooddata.xlsx")
 View(food)
@@ -13,7 +15,7 @@ food
 library(ggplot2)
 
 ##scatterplot
-ggplot(data=food, aes(x=tea, y=cookies)) + geom_point(size=2, shape = 20) +
+ggplot(data=food, aes(x=tea, y=cookies, color="magenta")) + geom_point(size=2, shape = 20) +
 geom_smooth(method=lm) +
   geom_jitter() +
 xlab("cups of tea drank") +
