@@ -11,9 +11,8 @@ library(cowplot)
 #Question 1:
 #Data on IQ scores VS highest SAT scores
 #Loads text file
-#produces scatter plot
 sat<-read.table("/Users/mark/Downloads/SAT.txt", sep="\t",header=TRUE)
-#Produces a 
+#Produces a scatterplot of, SAT (x-axis) vs IQ (y-axis)
 ggplot(sat,aes(x=SAT,y=IQ))+
   geom_point()+
   stat_smooth(method="lm")+
