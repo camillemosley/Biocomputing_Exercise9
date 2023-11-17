@@ -2,9 +2,7 @@ library(tidyverse)
 
 mtcars_sub = read.csv("mtcars_wt_disp.csv")
 
-mtcars_sub = mtcars_sub %>%
-  pivot_longer(!X, name)
-
+# scatter plot with linear regression
 ggplot(mtcars_sub,
        aes(x = wt, y = disp)) +
   geom_point() +
